@@ -1,8 +1,10 @@
 #! /bin/bash
-sudo unlink /etc/nginx/sites-enabled/default
-ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
+sudo rm /etc/nginx/sites-enabled/defaultt
+sudo ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 sudo /etc/init.d/nginx restart
-ln -sf /home/box/web/hello.py /etc/gunicorn.d/test
+
+sudo ln -s /home/box/web/hello.py /etc/gunicorn.d/test
+sudo gunicorn -c /home/box/web/etc/hello.py hello:app
 sudo /etc/init.d/gunicorn restart
 #sudo /etc/init.d/mysql start
-sudo gunicorn -c /home/box/web/etc/hello.py hello:app
+
